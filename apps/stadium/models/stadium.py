@@ -8,29 +8,36 @@
 # with the express written consent of Kamran Valijonov.
 #
 
-""" This module contains the CMSHome model. """
+
+""" This module contains the Stadium model. """
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class CMSHome(models.Model):
-    """ This model represents the home page. """
+class Stadium(models.Model):
+    """ This model represents a stadium. """
 
-    gallery = models.ForeignKey(
-        "gallery.Gallery",
-        on_delete=models.CASCADE,
-        verbose_name=_("Gallery"),
-    )
-    title = models.CharField(
+    name = models.CharField(
         max_length=255,
-        verbose_name=_("Title"),
-        help_text=_("The title of the home page."),
+        verbose_name=_('Name'),
+        help_text=_('The name of the stadium.'),
+    )
+
+    location = models.CharField(
+        max_length=255,
+        verbose_name=_('Location'),
+        help_text=_('The location of the stadium.'),
+    )
+
+    capacity = models.IntegerField(
+        verbose_name=_('Capacity'),
+        help_text=_('The capacity of the stadium.'),
     )
 
     def __str__(self):
-        return self.title
+        return self.name
 
     class Meta:
-        verbose_name = _('CMS Home')
-        verbose_name_plural = _('CMS Homes')
+        verbose_name = _('Stadium')
+        verbose_name_plural = _('Stadiums')
